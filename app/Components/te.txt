@@ -1,0 +1,16 @@
+# Step 1: Get Token and Store Cookies
+curl -X POST "https://zillow.fastpeer.ai/dashboard/proxy/token/" \
+     -H "Content-Type: application/json" \
+     --cookie-jar cookies.txt \
+     --data '{
+       "message": "Real estate Agent enabled. You can now ask questions."
+     }'
+
+# Step 2: Use the Token and Send the Query with Cookies
+curl -X POST "https://zillow.fastpeer.ai/dashboard/proxy/qa/" \
+     -H "Content-Type: application/json" \
+     -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ6aWxsb3ciLCJleHAiOjE3MzkxMTY0NTh9.Clepws1oTX2TBkNKZqaCqhBf5imwK5wFdqz2ws9a0yA" \
+     --cookie cookies.txt \
+     --data '{
+       "query": "what up"
+     }'

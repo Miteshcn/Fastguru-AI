@@ -1,0 +1,577 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+* 
+{
+  margin: 0;
+  padding: 0;
+}
+:root 
+{
+  --primary-color: #0000FF;
+  --menu-bg-color: #e8f0fe;
+}
+body 
+{
+  font-family: Nunito !important;
+}
+a 
+{
+  text-decoration: none !important;
+}
+.front-header.navbar-expand-md .navbar-nav .nav-link
+{  
+    padding: 0 20px;
+    font: normal normal normal 18px/28px Nunito;
+    color: #fff;
+}
+.btn 
+{
+  border-radius: 8px !important;
+  padding: 8px 20px !important;
+  font: normal normal 600 16px/26px Nunito !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-primary
+{
+  background: #BB04FF !important;
+  border-color: #BB04FF !important;
+  color: #fff;  
+}
+.hero-section 
+{
+  min-height: 100vh;
+  background-image: url(/img/home14-bg2.png);
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  background-color: #1C0A27;
+  padding: 150px 0 100px;
+  position: relative;  
+}
+.hero-section::after{
+  content: '';
+  position: absolute;
+  left: 43%;
+  top: 50%;
+  translate: -43% -50%;
+  width: 200px;
+  height: 80px;
+  background-image: url(/img/home14-shape1.png);
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 100%;
+}
+.hero-section .hero-text h1
+{
+  font: normal normal 800 60px/60px Nunito;
+  color: #fff;
+}
+.hero-section .hero-text p
+{
+  font: normal normal normal 20px/25px Nunito;
+  color: #fff;
+}
+.hero-section .hero-counter
+{
+  padding: 40px;
+  border-radius: 30px;
+  background-image: url(/img/home14-bg1.jpg);
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-size: cover; 
+}
+.hero-section .hero-counter h4 
+{
+  font: normal normal 500 35px/40px Nunito;
+  color: #fff;
+}
+.hero-section .hero-counter .btn-primary
+{
+   width: 80%;
+  margin: 0 auto 30px;
+}
+.hero-section .hero-counter .count 
+{
+  text-align: center;
+}
+.hero-section .hero-counter .count span 
+{
+  display: block;
+  padding: 10px;
+  border-radius: 10px;
+  background: #FFFFFF0A;
+  font: normal normal 500 40px/50px Nunito;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.hero-section .hero-counter .count p 
+{
+  color: #fff;
+  opacity: 0.7;
+}
+.hero-section .hero-counter .payment-mode 
+{
+  background: #FFFFFF0A;
+  padding: 10px;
+  border-radius: 8px;
+}
+.hero-section .hero-text p 
+{
+  font: normal normal 500 20px/30px Nunito;
+}
+.participate-section
+{
+  background-color: #1C0A27;
+  background-image: url(/img/home14-bg4.png);
+  background-repeat: no-repeat;
+  background-position: center top; 
+  background-size: cover; 
+  padding: 300px 0 100px;
+  font-family: Nunito !important;
+}
+.participate-section .percent-box span
+{
+  font: normal normal bold 50px/60px Nunito;
+}
+.participate-section .percent-box p 
+{
+  font-size: 20px;
+}
+.fee-collection 
+{
+  background-color: #1C0A27;
+  padding: 100px 0;
+  line-height: 2;
+  font-family: Nunito !important;
+}
+.fee-collection .coinbox 
+{
+  padding: 50px;
+  background-color: #FFFFFF0A;
+  border-radius: 20px;
+}
+.fee-collection .coinbox div
+{
+  padding: 10px 10px;
+  border-radius: 10px;
+  font-size: 15px;
+  opacity: 0.50;
+}
+.fee-collection .coinbox  .active 
+{
+  background: #BB04FF;
+  color: #FFFFFF;
+  padding: 15px 10px;
+  opacity: 1;
+  font-size: 17px;
+}
+.fee-collection ul li 
+{
+  font-size: 18px;
+}
+.fastcoin
+{
+  padding: 100px 0;
+  background-image: url(/img/home14-bg5.jpg);
+  background-repeat: no-repeat;
+  background-position: center top; 
+  background-size: cover;  
+  font-family: Nunito !important; 
+  line-height: 2;
+}
+.our-mission 
+{
+  padding-top: 100px; 
+}
+.fastcoin-box h6 
+{
+  font-size: 22px;
+  margin-bottom: 25px;
+  min-height: 50px;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+}
+.fastcoin-box p 
+{
+  font-size: 18px;
+  line-height: 1.5;
+  opacity: 0.5;
+}
+.mobile-app
+{
+  padding: 100px 0;
+  background-color: #1C0A27;
+  line-height: 2!important;
+}
+.mobile-app ul li a 
+{
+  font-weight: bold;
+  color: #D7F024;  
+  text-decoration: none;
+  display: block; margin-bottom: 10px;
+}
+.mobile-app ul li a .bi 
+{
+  width: 30px;
+  height: 30px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid #D7F024;
+  margin-right: 15px;
+}
+.footer-section
+{
+  padding: 100px 0 150px;
+  background-color: #D7F024;
+}
+.footer-section input 
+{
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #000;
+  color: #000;
+  border-radius: 0;
+  font-size: 18px;
+}
+footer
+{
+  padding: 30px 0 ;
+  background-color: #D7F024;
+  font-weight: 500;
+  font-size: 18px;
+  border-top: 1px solid #000;
+}
+footer .nav a 
+{
+  color: #000;
+  font-size: 18px;
+  padding: 0 15px;
+  font-weight: 500;
+}
+
+
+
+/* admin css */
+
+/* navbar  */
+.nav-bar
+{
+  box-shadow: 0 7px 14px 0 rgb(59 65 94 / 10%), 0 3px 6px 0 rgb(0 0 0 / 7%);
+  min-height: 60px;
+}
+
+/* sidebar  */
+.sidebar {
+  min-width: 250px;  
+  color: #fff;
+  height: 100vh;
+  position: fixed;
+  top: 85px;
+  left: 0;  
+  box-shadow: 0 7px 14px 0 rgb(59 65 94 / 10%), 0 3px 6px 0 rgb(0 0 0 / 7%);
+  padding-right: 20px;
+  z-index: 9999;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+.sidebar ul li {  
+  position: relative;
+}
+.sidebar ul li .sidebar-item {  
+  padding: 8px 10px 8px 20px;
+  border-radius: 0 20px 20px 0;  
+  color: #000;
+  border-left: 3px solid transparent;
+}
+.sidebar ul li .sidebar-item .bi 
+{
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  font-size: 20px;
+}
+.sidebar ul li .sidebar-item .text
+{
+  font-size: 14px; 
+}
+.sidebar ul li .sidebar-item.active, .sidebar ul li .sidebar-item:hover 
+{
+  border-left: 3px solid var(--primary-color);
+  background-color: var(--menu-bg-color);
+  color: var(--primary-color);
+}
+
+/* page content  */
+.content
+{
+  margin-left: 250px;
+  padding: 22px;
+  padding-top: 100px;
+}
+.admin-main-title 
+{
+  font-size: 22px;
+  font-weight: 600;
+}
+.card 
+{
+  border: 0;
+  box-shadow: 0 0px 8px 0 rgb(59 65 94 / 4%), 0 3px 6px 0 rgb(0 0 0 / 7%);
+}
+.all-documentboxes
+{
+  overflow: auto;
+  white-space: nowrap;
+  gap: 15px;
+  display: flex;
+}
+.documentboxes 
+{
+  box-shadow: 0 7px 14px 0 rgb(59 65 94 / 10%), 0 3px 6px 0 rgb(0 0 0 / 7%);
+  padding: 15px;
+  border-radius: 8px;
+  width: 140px;
+}
+.documentboxes p {
+  overflow: hidden; /* Prevents text from overflowing */
+  text-overflow: ellipsis; /* Adds ellipsis (...) for long text */
+  white-space: nowrap; /* Prevents wrapping to a new line */
+  max-width: 100%; /* Ensures it stays within the container */
+  text-align: center; /* Aligns text in the center */
+}
+
+.login-area {
+  min-height: 100vh;  
+  background: var(--menu-bg-color);
+  display: grid;
+  place-items: center;
+}
+.login-box { 
+  padding: 20px;
+  border-radius: 10px;
+  background: #fff;
+}
+.form-control {
+  width: 100%;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 15px;
+}
+.right-12 
+{
+  right: 15px;
+  top: 5px;
+}
+.bg-primary-light{
+  background: var(--menu-bg-color) !important;
+}
+.chat-section {
+  display: flex;
+  flex-direction: column; /* Ensures content stacks vertically */
+  justify-content: space-between; /* Keeps elements spaced appropriately */
+  padding: 50px 0;
+  min-height: 100vh; /* Makes the section take the full viewport height */
+  box-sizing: border-box; /* Includes padding in the height calculation */
+}
+
+.chat-section .nav-tabs .nav-link {
+  background: #303136; /* Slightly lighter shade for inactive tabs */
+  color: #ffffff !important;
+  margin-right: 10px;
+  border-radius: 10px; /* Smooth rounded corners */
+  padding: 10px 15px; /* Adjust padding for better aesthetics */
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth hover effect */
+}
+
+.chat-section .nav-tabs .nav-link.active {
+  background: #515151 !important; /* Darker shade for active tab */
+  color: #ffffff !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for active tab */
+  border: 1px solid #515151; /* Ensure a distinct border */
+}
+
+
+.custom-connect-button .chakra-button {
+  background-color: #f59532 !important; 
+  border-radius: 30px !important;       
+  padding: 8px 32px !important;         
+  font-weight: bold !important;         
+  color: white !important;              
+  border: none !important;              
+}
+
+.custom-connect-button .chakra-button:hover {
+  background-color: #e6822a !important; 
+}
+
+.custom-connect-button button {
+  background-color: rgb(245, 149, 50) !important;
+  color: #222 !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  display: flex;
+  align-items: center;
+}
+
+.workspace-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  white-space: normal; 
+}
+
+.workspace-description-tooltip:hover {
+  overflow: visible;
+  white-space: nowrap;
+  text-overflow: clip;
+}
+
+
+.crm-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.crm-popup {
+  background: #ffffff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 400px;
+  max-width: 90%;
+}
+
+.crm-popup h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.crm-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.crm-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+.crm-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.crm-name {
+  flex-grow: 1;
+  font-size: 16px;
+  font-weight: 500;
+  color: #555;
+}
+
+.crm-connect-button {
+  background-color: #e6822a; /* Button background color */
+  color: white; /* Button text color */
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.crm-connect-button:hover {
+  background-color: #d3741f; /* Slightly darker on hover */
+  transform: translateY(-2px); /* Subtle lift effect */
+}
+
+.crm-connect-button:active {
+  background-color: #bf681c; /* Darker shade on click */
+  transform: translateY(0); /* Reset lift effect */
+}
+
+.close-popup {
+  display: block;
+  margin: 20px auto 0;
+  width: 100px;
+  background-color: #e6822a; /* Same color for close button */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.close-popup:hover {
+  background-color: #d3741f; /* Slightly darker on hover */
+}
+
+.close-popup:active {
+  background-color: #bf681c; /* Darker shade on click */
+}
+
+/* Style for buttons inside Collapse */
+.collapse .btn {
+  color: #e2e2e5; /* Light text color */
+  background-color: #242629; /* Dark background color */
+  border: 1px solid #444; /* Subtle border for visibility */
+  border-radius: 5px;
+  padding: 0.5rem 1rem; /* Padding for better button appearance */
+  font-size: 0.875rem; /* Adjust font size */
+  transition: background-color 0.3s, border-color 0.3s; /* Smooth transition on hover */
+}
+
+.collapse .btn:hover {
+  background-color: #333; /* Darker background on hover */
+  border-color: #666; /* Lighter border color on hover */
+}
+
+.collapse .btn:focus {
+  outline: none; /* Remove outline on focus */
+}
+
+/* Style for the specific button with no hover/focus effects */
+.collapse .btn.custom-btn-no-hover {
+  color: #242629; /* Dark text color */
+  background-color: #e2e2e5; /* Light background color */
+  border: 1px solid #bbb; /* Subtle border */
+  border-radius: 5px;
+  padding: 0.5rem 1rem; /* Padding for better button appearance */
+  font-size: 0.875rem; /* Adjust font size */
+  transition: none; /* Disable transition */
+}
+
+/* No hover or focus effects for this button */
+.collapse .btn.custom-btn-no-hover:hover,
+.collapse .btn.custom-btn-no-hover:focus {
+  background-color: #e2e2e5; /* Keep same background */
+  border-color: #bbb; /* Keep same border color */
+  outline: none; /* No outline on focus */
+}
