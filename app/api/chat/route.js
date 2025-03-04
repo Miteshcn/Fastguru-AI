@@ -1,14 +1,19 @@
-import fetch from "node-fetch";
+import { ChatOpenAI } from "langchain/chat_models";
+import { SupabaseVectorStore } from "langchain/vectorstores/supabase";
+import { OpenAIEmbeddings } from "langchain/embeddings";
+import { OpenAI } from "langchain/llms";
+import { ConversationalRetrievalQAChain } from "langchain/chains";
+import { ConversationBufferMemory } from "langchain/memory";
 import supabase from "@/lib/database";
-import { PDFDocument, rgb } from 'pdf-lib';
-
+import fetch from "node-fetch";
+import { PDFDocument, rgb } from "pdf-lib";
 
 const API_KEY = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
-console.log(process.env.NEXT_PUBLIC_OPENAI_API_KEY);
 
 export async function POST(request) {
   try {
     const workspaceId = request.headers.get("workspace_id");
+    const isRealEstateAgent = request.headers.get("isRealEstateAgent") === "true";
 
     if (!workspaceId) {
       return new Response(
@@ -27,100 +32,68 @@ export async function POST(request) {
       );
     }
 
-    // Save the user's message
     const { error: userInsertError } = await supabase
       .from("Chat")
-      .insert({
-        workspace_id: workspaceId,
-        content: message,
-        role: "user",
-      });
+      .insert({ workspace_id: workspaceId, content: message, role: "user" });
 
     if (userInsertError) {
       console.error("Error inserting user message:", userInsertError.message);
       throw userInsertError;
     }
 
-    // Call the OpenAI API
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "gpt-4",
-        messages: [
-          {
-            role: "system",
-            content:
-              "You are a document-generating assistant. Respond in detail to user queries.",
-          },
-          { role: "user", content: message },
-        ],
-        max_tokens: 500,
-        temperature: 0.7,
-        top_p: 1,
-        frequency_penalty: 0,
-        presence_penalty: 0,
-      }),
+    let assistantMessage = "";
+
+    const memory = new ConversationBufferMemory({
+      returnMessages: true,
+      memoryKey: "chat_history",
     });
 
-    const data = await response.json();
+    if (isRealEstateAgent) {
+      const embeddings = new OpenAIEmbeddings({ openAIApiKey: API_KEY });
+      const vectorStore = new SupabaseVectorStore(embeddings, {
+        client: supabase,
+        tableName: "vector_store",
+        queryName: "match_vectors",
+      });
 
-    if (!response.ok) {
-      console.error("Error from OpenAI API:", data);
-      throw new Error(
-        data.error?.message || "Failed to fetch response from OpenAI."
+      const retriever = vectorStore.asRetriever();
+      const chain = ConversationalRetrievalQAChain.fromLLM(
+        new OpenAI({ openAIApiKey: API_KEY }),
+        retriever,
+        { memory }
       );
+
+      const response = await chain.call({ question: message });
+      assistantMessage = response.text;
+    } else {
+      const chat = new ChatOpenAI({ openAIApiKey: API_KEY });
+      assistantMessage = await chat.call(message, { memory });
     }
-
-    const assistantMessage = data.choices[0]?.message?.content || "";
-
     const keywords = ["documentize", "document", "agreement"];
     const isDocumentRequest = keywords.some((keyword) =>
       message.toLowerCase().includes(keyword)
     );
 
     const storedMessage = isDocumentRequest
-      ? "Check your Web3 Storage for the requested document"
+      ? "Check your Web3 Storage for the requested document."
       : assistantMessage;
 
-    // Save the assistant's response
     const { error: assistantInsertError } = await supabase
       .from("Chat")
-      .insert({
-        workspace_id: workspaceId,
-        content: storedMessage,
-        role: "assistant",
-      });
+      .insert({ workspace_id: workspaceId, content: storedMessage, role: "assistant" });
 
     if (assistantInsertError) {
-      console.error(
-        "Error inserting assistant message:",
-        assistantInsertError.message
-      );
+      console.error("Error inserting assistant message:", assistantInsertError.message);
       throw assistantInsertError;
     }
 
     if (isDocumentRequest) {
-      // Generate a PDF
       const pdfDoc = await PDFDocument.create();
       const page = pdfDoc.addPage();
       const { width, height } = page.getSize();
-      const fontSize = 12;
-
-      page.drawText(assistantMessage, {
-        x: 50,
-        y: height - 50,
-        size: fontSize,
-        color: rgb(0, 0, 0),
-        maxWidth: width - 100,
-        lineHeight: 16,
-      });
+      page.drawText(assistantMessage, { x: 50, y: height - 50, size: 12, color: rgb(0, 0, 0) });
 
       const pdfBytes = await pdfDoc.save();
-
       return new Response(pdfBytes, {
         status: 200,
         headers: {
@@ -132,20 +105,16 @@ export async function POST(request) {
 
     return new Response(
       JSON.stringify({ reply: assistantMessage }),
-      {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      }
+      { status: 200, headers: { "Content-Type": "application/json" } }
     );
   } catch (error) {
-    console.error("Error communicating with OpenAI:", error.message);
+    console.error("Error:", error.message);
     return new Response(
       JSON.stringify({ error: "Failed to process request." }),
       { status: 500, headers: { "Content-Type": "application/json" } }
     );
   }
 }
-
 
 export async function GET(request) {
   try {
@@ -169,10 +138,10 @@ export async function GET(request) {
       throw error;
     }
 
-    return new Response(JSON.stringify({ chats }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
+    return new Response(
+      JSON.stringify({ chats }),
+      { status: 200, headers: { "Content-Type": "application/json" } }
+    );
   } catch (error) {
     console.error("Error fetching chat history:", error.message);
     return new Response(
